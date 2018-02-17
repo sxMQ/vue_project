@@ -76,7 +76,7 @@ watch: {
 ### 2.1 home组件中的轮播图
 + 使用mint-ui中的swipe组件
 + 要获取数据来渲染轮播图 在vue中发送数据请求使用 axios 下包 
-```yarn add axios -S  ```
+  ```yarn add axios -S  ```
 + 导入axios并挂载 挂载是挂载在vue的原型对象上
 ```
 import axios from 'axios'
@@ -103,8 +103,8 @@ Vue.prototype.$http = axios
 以后就只剩下这三步
 + 改造路由链接—— 把 `HomeContainer` 组件中的 新闻资讯按钮，改造成`router-link` 并添加 `to` 属性；
 + 创建链接对应的组件——在项目的 `src -> components -> news` 文件夹下，创建一个 `NewsList.vue` 组件；
-+  在 `router.js` 中，导入`NewsList.vue` 组件，并添加一条新的路由规则；
-注意：这个新创建的组件在哪一位父组件上 路由hash值要加上父组件的链接
++ 在 `router.js` 中，导入`NewsList.vue` 组件，并添加一条新的路由规则；
+  注意：这个新创建的组件在哪一位父组件上 路由hash值要加上父组件的链接
 
 ### 2.6 新闻资讯
 
@@ -197,15 +197,17 @@ mui('.mui-scroll-wrapper').scroll({
 + 导入后浏览器报错了：`bundle.js:42343 Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them`
 + 经过分析上述的报错问题：导入的`mui.js`中，可能使用了`caller`, `callee`, `arguments`这些特性，但是，我们打包好的`bundle.js`这个文件，默认启用了严格模式，因此，在严格模式下，不持支`mui.js`中的语法；
 + 如果要解决上述的报错问题，有两个解决方案：
- - 把 `mui.js` 中的 caller callee arguments 都改掉；（不可取）
- - 手动把`webpack`的严格模式禁用掉；（这是我们要采取的方案）
+  + 把 `mui.js` 中的 caller callee arguments 都改掉；（不可取）
+  + 手动把`webpack`的严格模式禁用掉；（这是我们要采取的方案）
+
+
 + 如何禁用webpack的严格模式呢？需要安装一个对应的插件即可：
-使用的插件连接为[babel-plugin-transform-remove-strict-mode](https://github.com/genify/babel-plugin-transform-remove-strict-mode)
- - 安装插件`yarn add babel-plugin-transform-remove-strict-mode -D`
- - 在`.babelrc` 文件中，添加插件名称：
-    ```
-    {
-      "plugins": ["transform-remove-strict-mode"]
-    }
-    ```
+  使用的插件连接为[babel-plugin-transform-remove-strict-mode](https://github.com/genify/babel-plugin-transform-remove-strict-mode)
+  - 安装插件`yarn add babel-plugin-transform-remove-strict-mode -D`
+  - 在`.babelrc` 文件中，添加插件名称：
+```
+{
+  "plugins": ["transform-remove-strict-mode"]
+}
+```
 + 页面刷新一下才能出现滑动效果这样是有问题的，因为那段js组件要操作dom元素根据周期函数在mounted函数时dom元素才渲染好可以使用，所以那段js代码应该在mounted函数里执行这样页面渲染完dom元素就可以执行dom元素上的js代码了
