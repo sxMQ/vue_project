@@ -6,6 +6,20 @@ import VueRouter from 'vue-router'
 // 为vue安装vue-router
 Vue.use(VueRouter)
 
+// 创建时间的全局过滤器
+Vue.filter('dateFormat',function(val){
+    // 可以借助moment时间包 但最后优化时会发现这儿包很大 还是改成之前格式化时间 的方法
+    var dt = new Date(val)
+    var y = dt.getFullYear()
+    var m = (dt.getMonth()+1).toString().padStart(2,'0')
+    var d = dt.getDay().toString().padStart(2,'0')
+    var hh = dt.getHours().toString().padStart(2,'0')
+    var mm = dt.getMinutes().toString().padStart(2,'0')
+    var ss = dt.getSeconds().toString().padStart(2,'0')
+
+    return  `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
+
 // 导入axios并挂载
 import axios from 'axios'
 axios.defaults.baseURL = "http://39.106.32.91:3000"

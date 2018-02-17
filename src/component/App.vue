@@ -88,6 +88,7 @@ export default {
 <style lang="scss" scoped>
 .app-container {
   padding-top: 40px;
+  padding-bottom: 50px;
   overflow: hidden;
 }
 
@@ -103,7 +104,7 @@ export default {
 }
 .v-enter-active,
 .v-leave-active{
-	transition:all 1s ease;
+	transition:all 0.7s ease;
 }
 </style>
 

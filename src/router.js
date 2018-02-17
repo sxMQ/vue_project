@@ -20,7 +20,9 @@ import HomeContainer from './component/tabbars/HomeContainer.vue'
 import MemberContainer from './component/tabbars/MemberContainer.vue'
 import CartContainer from './component/tabbars/CartContainer.vue'
 import SearchContainer from './component/tabbars/SearchContainer.vue'
-
+import NewsList from './component/news/newsList.vue'
+import NewsInfo from './component/news/newsInfo.vue'
+import Photolist from './component/photos/photolist.vue'
 // 第二步：创建路由对象实例
 const router = new VueRouter({
     // 用routes节点来规定有哪些路由规则
@@ -29,7 +31,10 @@ const router = new VueRouter({
         {path:'/home',component:HomeContainer},
         {path:'/member',component:MemberContainer},
         {path:'/cart',component:CartContainer},
-        {path:'/search',component:SearchContainer}
+        {path:'/search',component:SearchContainer},
+        {path:'/home/newsList',component:NewsList},
+        {path:'/home/newsInfo:id',component:NewsInfo,props:true},
+        {path:'/home/photolist',component:Photolist}
     ],
     linkActiveClass:'mui-active'//设置路由高亮的类
 })
